@@ -1,162 +1,261 @@
-<!-- sections/gift-header.liquid -->
-
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
 
-  .gift-section-row {
-    display: flex;
-    align-items: center;
+.gift-header-container {
+  width: 100%;
+  font-family: 'Jost', sans-serif;
+  margin: 0;
+}
+
+.gift-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  height: 56px;
+  position: relative;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  border-radius: 8px;
+}
+
+.gift-header-bar .gift-brand {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #000;
+  margin: 0 auto;
+}
+
+.hamburger, .close-icon {
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger .line {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #222;
+  margin: 3px 0;
+  border-radius: 2px;
+}
+
+.close-icon {
+  display: none;
+  font-size: 32px;
+  color: #222;
+  left: 16px;
+  background: none;
+}
+
+.gift-menu-content {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 16px;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  margin: 18px 0 0 0;
+  padding: 20px 18px 28px 18px;
+  z-index: 12;
+}
+
+.gift-expand-brand {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.gift-menu-content .gift-tagline {
+  font-size: 16px;
+  color: #000;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.gift-menu-content .gift-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 0;
+  background: #FFEB3B;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  width: 100%;
+  margin: 0 auto;
+  transition: color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.gift-menu-content .gift-button::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; height: 100%; width: 0;
+  background: #111;
+  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+  z-index: -1;
+}
+.gift-menu-content .gift-button:hover::before {
+  width: 100%;
+}
+.gift-menu-content .gift-button:hover {
+  color: #fff;
+}
+.gift-arrow { font-size: 22px; margin-left: 8px; }
+
+@media (min-width: 768px) {
+  .gift-header-bar {
+    border-radius: 0;
+    box-shadow: none;
+    height: auto;
     justify-content: space-between;
-    background: #F5F5F5;
     padding: 24px;
-    font-family: 'Jost', sans-serif;
   }
-  
-  .image-banner-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #FFFFFF33;
-    padding: 24px;
-    font-family: 'Jost', sans-serif;
-  }
-  
-  .gift-brand {
+  .gift-header-bar .gift-brand {
     font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #000000;
+    margin: 0;
   }
-  
-  .title-name {
+  .hamburger, .close-icon, .gift-expand-brand, .gift-menu-content {
+    display: none !important;
+  }
+  .gift-header-bar .gift-tagline,
+  .gift-header-bar .gift-button {
+    display: block !important;
+    position: static !important;
+  }
+  .gift-header-bar {
     display: flex;
     align-items: center;
-    font-size: 70px;
-    font-weight: 500;
-    letter-spacing: 0px;
-    color: #000000;
-    line-height: 100%;
+    justify-content: space-between;
   }
-  
-  .gift-tagline {
+  .gift-header-bar .gift-tagline {
     font-size: 16px;
-    color: #000000;
-    flex: 1;
+    color: #000;
+    margin: 0 32px;
     text-align: center;
+    flex: 1;
   }
-  
-  .gift-button {
+  .gift-header-bar .gift-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
     font-size: 14px;
-    font-weight: 50;
+    font-weight: 500;
     padding: 10px 32px;
-    background: #ffeb3b;
+    background: #FFEB3B;
     color: #111;
     border: none;
-    border-radius: 0px;
+    border-radius: 4px;
+    margin: 0 0 0 18px;
     text-decoration: none;
-    transition: color 0.3s ease;
-    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     position: relative;
-    z-index: 1;
+    overflow: hidden;
   }
-  
-  .gift-button::before {
+  .gift-header-bar .gift-button::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0%;
+    left: 0; top: 0; height: 100%; width: 0;
     background: #111;
     transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
     z-index: -1;
   }
-  
-  .gift-button:hover::before {
+  .gift-header-bar .gift-button:hover::before {
     width: 100%;
   }
-  
-  .gift-button:hover {
+  .gift-header-bar .gift-button:hover {
     color: #fff;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
   }
-  
-  .gift-arrow {
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1;
-    margin-top: -5px;
-    margin-right: -5px;
+  .gift-arrow { font-size: 22px; margin-left: 8px; }
+}
+
+/* MOBILE VISIBILITY */
+@media (max-width: 767px) {
+  .gift-header-bar .gift-tagline,
+  .gift-header-bar .gift-button {
+    display: none !important;
+  }
+  .gift-header-container.menu-open .gift-menu-content {
     display: flex;
-    align-items: center;
   }
-
-  /* Responsive styles for mobile */
-  @media (max-width: 767px) {
-    .gift-section-row,
-    .image-banner-row {
-      flex-direction: column;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .gift-brand {
-      font-size: 22px;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-    }
-
-    .gift-tagline {
-      font-size: 14px;
-      margin-bottom: 16px;
-      text-align: center;
-      flex: initial;
-    }
-
-    .gift-button {
-      font-size: 14px;
-      padding: 12px 24px;
-      border-radius: 4px;
-      width: 100%;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .title-name {
-      font-size: 38px;
-      line-height: 1.1;
-      margin-top: 16px;
-      justify-content: center;
-    }
+  .gift-header-container.menu-open .hamburger {
+    display: none;
   }
+  .gift-header-container.menu-open .close-icon {
+    display: flex;
+  }
+}
 </style>
 
+<div class="gift-header-container" id="gift-header-container">
+  <div class="gift-header-bar" id="gift-header-bar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </button>
+    <button class="close-icon" id="close-btn" aria-label="Close menu" aria-expanded="true">
+      <span>&times;</span>
+    </button>
+    <span class="gift-brand">{{ section.settings.brand_name }}</span>
 
-<div class="gift-section-row">
-  <div class="gift-brand">
-    {{ section.settings.brand_name }}
+    <!-- Only for desktop: tagline and button in header bar -->
+    <span class="gift-tagline">{{ section.settings.tagline }}</span>
+    <a  class="gift-button">
+      <span>{{ section.settings.gift_button_text }}</span>
+      <span class="gift-arrow">&rarr;</span>
+    </a>
   </div>
-  <div class="gift-tagline">
-    {{ section.settings.tagline }}
-  </div>
-  <div>
-    <a  class="gift-button" aria-label="{{ section.settings.button_text }}">
+  <!-- Only for mobile: menu panel when open -->
+  <div class="gift-menu-content" id="gift-menu-content">
+    <div class="gift-expand-brand">{{ section.settings.brand_name }}</div>
+    <div class="gift-tagline">{{ section.settings.tagline }}</div>
+    <a  class="gift-button">
       <span>{{ section.settings.gift_button_text }}</span>
       <span class="gift-arrow">&rarr;</span>
     </a>
   </div>
 </div>
-<div class="image-banner-row">
-  
-   <div class="title-name">
-    {{ section.settings.title_name }}
-  </div>
 
-</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var menuContainer = document.getElementById('gift-header-container');
+    var hamburger = document.getElementById('hamburger-btn');
+    var closeBtn = document.getElementById('close-btn');
+    function openMenu() {
+      menuContainer.classList.add('menu-open');
+    }
+    function closeMenu() {
+      menuContainer.classList.remove('menu-open');
+    }
+    hamburger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+  });
+</script>
 
 {% schema %}
 {
@@ -179,24 +278,6 @@
       "id": "gift_button_text",
       "label": "Gift Button Text",
       "default": "CHOOSE GIFT"
-    },
-    {
-      "type": "text",
-      "id": "title_name",
-      "label": "Title Name",
-      "default": "The Gift Guide"
-    },
-    {
-      "type": "text",
-      "id": "header_tagline",
-      "label": "Header Tagline",
-      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
-    },
-    {
-      "type": "text",
-      "id": "shop_button_text",
-      "label": "Shop Button Text",
-      "default": "Shop Now"
     }
   ],
   "presets": [
