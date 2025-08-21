@@ -11,7 +11,8 @@
     padding: 24px;
     font-family: 'Jost', sans-serif;
   }
-   .image-banner-row {
+  
+  .image-banner-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -19,28 +20,31 @@
     padding: 24px;
     font-family: 'Jost', sans-serif;
   }
+  
   .gift-brand {
     font-size: 26px;
     font-weight: 700;
     letter-spacing: 1px;
     color: #000000;
   }
-  .title-name{
-     display: flex;
-  align-items: center;
-     font-size: 70px;
+  
+  .title-name {
+    display: flex;
+    align-items: center;
+    font-size: 70px;
     font-weight: 500;
     letter-spacing: 0px;
     color: #000000;
-    line-height:100%;
-   
+    line-height: 100%;
   }
+  
   .gift-tagline {
     font-size: 16px;
     color: #000000;
     flex: 1;
     text-align: center;
   }
+  
   .gift-button {
     display: inline-flex;
     align-items: center;
@@ -59,6 +63,7 @@
     position: relative;
     z-index: 1;
   }
+  
   .gift-button::before {
     content: '';
     position: absolute;
@@ -70,23 +75,66 @@
     transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
     z-index: -1;
   }
+  
   .gift-button:hover::before {
     width: 100%;
   }
+  
   .gift-button:hover {
     color: #fff;
     box-shadow: 0 4px 18px rgba(0,0,0,0.18);
   }
+  
   .gift-arrow {
     font-size: 26px;
     font-weight: 700;
     line-height: 1;
-    margin-top:-5px;
-    margin-right:-5px;
+    margin-top: -5px;
+    margin-right: -5px;
     display: flex;
     align-items: center;
   }
+
+  /* Responsive styles for mobile */
+  @media (max-width: 767px) {
+    .gift-section-row,
+    .image-banner-row {
+      flex-direction: column;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .gift-brand {
+      font-size: 22px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .gift-tagline {
+      font-size: 14px;
+      margin-bottom: 16px;
+      text-align: center;
+      flex: initial;
+    }
+
+    .gift-button {
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 4px;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .title-name {
+      font-size: 38px;
+      line-height: 1.1;
+      margin-top: 16px;
+      justify-content: center;
+    }
+  }
 </style>
+
 
 <div class="gift-section-row">
   <div class="gift-brand">
