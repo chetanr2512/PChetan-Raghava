@@ -1,0 +1,115 @@
+<!-- sections/gift-header.liquid -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap');
+
+  .gift-section-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fafafa;
+    padding: 24px;
+    font-family: 'Jost', sans-serif;
+  }
+  .gift-brand {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #111;
+  }
+  .gift-tagline {
+    font-size: 18px;
+    color: #111;
+    flex: 1;
+    text-align: center;
+  }
+  .gift-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 16px 32px;
+    background: #ffeb3b;
+    color: #111;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  .gift-button::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: #111;
+    transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+    z-index: -1;
+  }
+  .gift-button:hover::before {
+    width: 100%;
+  }
+  .gift-button:hover {
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  }
+  .gift-arrow {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+</style>
+
+<div class="gift-section-row">
+  <div class="gift-brand">
+    {{ section.settings.brand_name }}
+  </div>
+  <div class="gift-tagline">
+    {{ section.settings.tagline }}
+  </div>
+  <div>
+    <a href="/collections/gifts" class="gift-button" aria-label="{{ section.settings.button_text }}">
+      <span>{{ section.settings.button_text }}</span>
+      <span class="gift-arrow">&rarr;</span>
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header Gift Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "CHOOSE GIFT →"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header Gift Section"
+    }
+  ]
+}
+{% endschema %}
