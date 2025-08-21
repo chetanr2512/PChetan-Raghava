@@ -7,7 +7,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fafafa;
+    background: #F5F5F5;
+    padding: 24px;
+    font-family: 'Jost', sans-serif;
+  }
+   .image-banner-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF33;
     padding: 24px;
     font-family: 'Jost', sans-serif;
   }
@@ -79,11 +87,12 @@
   </div>
   <div>
     <a  class="gift-button" aria-label="{{ section.settings.button_text }}">
-      <span>{{ section.settings.button_text }}</span>
+      <span>{{ section.settings.gift_button_text }}</span>
       <span class="gift-arrow">&rarr;</span>
     </a>
   </div>
 </div>
+<div class="image-banner-row"> </div>
 
 {% schema %}
 {
@@ -103,9 +112,27 @@
     },
     {
       "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
+      "id": "gift_button_text",
+      "label": "Gift Button Text",
       "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "text",
+      "id": "title_name",
+      "label": "Title Name",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "text",
+      "id": "header_tagline",
+      "label": "Header Tagline",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "shop_button_text",
+      "label": "Shop Button Text",
+      "default": "Shop Now"
     }
   ],
   "presets": [
