@@ -12,12 +12,7 @@
       "type": "header",
       "content": "Grid Products"
     },
-   
-    {
-      "type": "product",
-      "id": "products",
-      "label": "Product Label"
-    }
+  
   ],
   "presets": [
     {
@@ -26,3 +21,6 @@
   ]
 }
 {% endschema %}
+{% for product in collection.products -%}
+  {{ product.title }}
+{%- endfor %}
