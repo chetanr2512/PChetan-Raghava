@@ -251,7 +251,7 @@
 
 /* Right image column */
 .image-col {
-  flex: 0 0 70%; /* fixed ~70% width */
+  flex: 0 0 74%; /* fixed ~70% width */
   min-width: 320px;
 }
 
@@ -272,7 +272,13 @@
   border-radius: 8px;
   display: block;
 }
-
+.section-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 70px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #111;
+}
 
 
 
@@ -477,8 +483,8 @@
     <img 
       src="{{ 'imagebanner.svg' | asset_url }}" 
       alt="Other Image" 
-      width="1200" 
-      height="540"
+      width="100%" 
+      height="100%"
       class="other-image" />
   </div>
 </div>
