@@ -284,8 +284,9 @@ label {
             <!-- Size Variants -->
             {% assign size_options = product.options_with_values | where: "name", "Size" %}
             {% if size_options.size > 0 %}
-              <div class="field">
               <label for="size">Size</label>
+              <div class="field">
+              
 
               <div class="select-container">
                 <select class="size-variant-select" id="size" required>
