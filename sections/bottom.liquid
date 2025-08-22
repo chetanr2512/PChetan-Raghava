@@ -286,11 +286,15 @@ label {
         <div class="product-modal-content">
           <button class="modal-close" data-product="{{ product.id }}">&times;</button>
           <div class="product-modal-info">
+            <div class="model-container">
             <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
-            <h3 class="modal-title">{{ product.title }}</h3>
-            <p class="modal-price">{{ product.price | money }}</p>
-           {% assign desc_key = product.description  %}
+             <div class="modal-text-content">
+                <h3 class="modal-title">{{ product.title }}</h3>
+                <p class="modal-price">{{ product.price | money }}</p>
+                 {% assign desc_key = product.description  %}
             <p class="modal-description">{{ desc_key }}</p>
+             </div>
+          </div>
             <!-- Color Variants -->
             {% assign color_options = product.options_with_values | where: "name", "Color" %}
             {% if color_options.size > 0 %}
