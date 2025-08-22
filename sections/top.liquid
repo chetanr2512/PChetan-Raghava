@@ -583,6 +583,12 @@
   letter-spacing: 0px;
 }
 
+.image-banner-mobile{
+
+   display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 }
 </style>
@@ -659,6 +665,24 @@
 </div>
 <div class="image-banner-footer">
  <span class="image-footer">{{ section.settings.footer_image }}</span>
+</div>
+
+<div classs="image-banner-mobile">
+  <h1 class="section-title">{{ section.settings.title_name }}</h1>
+    <p class="section-description">{{ section.settings.description }}</p>
+<button class="gift-button reversed-btn" style="margin-top: 16px;">
+    <span class="button-text">{{ section.settings.shop_button_text }}</span>
+    <span class="gift-arrow">&rarr;</span>
+  </button>
+   <div class="image-banner-bar">
+    <img 
+      class="image-banner-bg" 
+      src="{{ 'imagebanner.svg' | asset_url }}" 
+      alt="Banner" 
+      width="1200" 
+      height="540" />
+  </div>
+<span class="image-footer">{{ section.settings.footer_image }}</span>
 </div>
 
 
