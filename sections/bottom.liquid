@@ -181,6 +181,9 @@
   transition: all 0.13s;
 }
 .color-variant-btn:active, .color-variant-btn.active { background: #000; color: #fff; }
+.color-variant-btn.selected{
+  background: #000; color: #fff;
+}
 
 /* Size select */
 {% comment %} .size-variant-select {
@@ -434,6 +437,52 @@ document.querySelectorAll('.modal-close').forEach(function(btn) {
 document.querySelectorAll('.product-modal').forEach(function(modal) {
   modal.addEventListener('click', function(e) {
     if (e.target === modal) { modal.style.display = 'none'; }
+  });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // For each product modal on the page
+  document.querySelectorAll('.product-modal').forEach(modal => {
+    let selectedColor = null;
+
+    // When a color button is clicked
+    modal.querySelectorAll('.color-variant-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active/selected style from all buttons first
+        modal.querySelectorAll('.color-variant-btn').forEach(btn => btn.classList.remove('selected'));
+        // Add a style class to this button to indicate selection
+        button.classList.add('selected');
+        // Store the selected color value (text content)
+        selectedColor = button.textContent.trim();
+      });
+    });
+
+    // When Add to Cart button is clicked
+    modal.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+      // Get the selected size from dropdown
+      const sizeSelect = modal.querySelector('.size-variant-select');
+      const selectedSize = sizeSelect ? sizeSelect.value : null;
+
+      if (!selectedColor) {
+        alert('Please select a color.');
+        return;
+      }
+      if (!selectedSize) {
+        alert('Please select a size.');
+        return;
+      }
+
+      // Now you have both selectedColor and selectedSize values
+      console.log('Add to Cart:', {
+        color: selectedColor,
+        size: selectedSize,
+      });
+
+      // TODO: Add your "add to cart" logic here, e.g., add item with those variant options
+
+    });
   });
 });
 
