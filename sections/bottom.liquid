@@ -335,7 +335,11 @@ label {
           <button class="modal-close" data-product="{{ product.id }}">&times;</button>
           <div class="product-modal-info">
             <div class="modal-container">
-            <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
+              <div class="image-div">
+                 <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
+
+              </div>
+           
             <div class="modal-text-content">
             <h3 class="modal-title">{{ product.title }}</h3>
             <p class="modal-price">{{ product.price | money }}</p>
