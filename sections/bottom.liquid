@@ -199,7 +199,7 @@
            {% assign desc_key = product.description | append: forloop.index %}
             <p class="modal-description">{{ desc_key }}</p>
             <!-- Color Variants -->
-            {% assign color_options = product.variant_picker | where: "name", "Color" %}
+            {% assign color_options = product.options_with_values | where: "name", "Color" %}
             {% if color_options.size > 0 %}
               <label>Color</label>
               <div class="color-variant-row">
@@ -209,7 +209,7 @@
               </div>
             {% endif %}
             <!-- Size Variants -->
-            {% assign size_options = product.variant_picker | where: "name", "Size" %}
+            {% assign size_options = product.options_with_values | where: "name", "Size" %}
             {% if size_options.size > 0 %}
               <label>Size</label>
               <select class="size-variant-select">
