@@ -171,7 +171,7 @@
   text-align:left;
   padding: 10px 4px;
   border: 1px solid #222;
-  border-left: 5px solid #000000;
+  {% comment %} border-left: 5px solid #000000; {% endcomment %}
   background: #fff;
   color: #222;
   font-size: 15px;
@@ -365,7 +365,7 @@ label {
               <label style="margin-top:5px">Color</label>
               <div class="color-variant-row">
                 {% for value in color_options.first.values %}
-                  <button class="color-variant-btn">{{ value }}</button>
+                  <button class="color-variant-btn" style="border-left: 5px solid {{ value | downcase }};">{{ value }}</button>
                 {% endfor %}
               </div>
 
