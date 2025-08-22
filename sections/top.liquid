@@ -507,6 +507,40 @@
   .image-banner-container {
     display: block !important; /* Ensure banner container visible */
   }
+
+  .image-banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vw;
+    text-align: center;          /* Center text on mobile */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Optional: light overlay for readability */
+    border-radius: 8px;
+  }
+
+  .title-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .image-banner-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    white-space: normal;          /* allow multi-line wrap */
+  }
+
+  .image-banner-btn {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 16px;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>
 
