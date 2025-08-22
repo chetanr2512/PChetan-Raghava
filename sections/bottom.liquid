@@ -106,17 +106,16 @@
 .modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;}
 
 /* Color and size variant styling */
-.color-variant-row { display: flex;  margin-bottom:10px;width:100%;}
+.color-variant-row { display: flex; gap: 12px; margin-bottom:10px;}
 .color-variant-btn {
-  text-align:left;
-  padding: 10px 4px;
+  padding: 8px 20px;
   border: 1px solid #222;
   background: #fff;
   color: #222;
   font-size: 15px;
+  border-radius: 2px;
   cursor: pointer;
   font-weight: 500;
-  width:100%;
   transition: all 0.13s;
 }
 .color-variant-btn:active, .color-variant-btn.active { background: #111; color: #fff; }
@@ -179,25 +178,6 @@ label {
   transition: transform 0.2s ease;
   color: #161616;               /* uses currentColor in the SVG */
 }
-/* Default caret = down */
-.caret {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%) rotate(0deg);
-  width: 16px;
-  height: 16px;
-  pointer-events: none;         /* clicks go to the select */
-  transition: transform 0.2s ease;
-  color: #161616; 
-  
-}
-
-/* Rotate when wrapper has .open */
-.select-container.open .caret {
-  transform: translateY(-50%) rotate(180deg);
-}
-
 
 /* Rotate when the select is focused (opened on most browsers) */
 .select-container:focus-within .caret,
@@ -289,6 +269,8 @@ label {
             <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
             <h3 class="modal-title">{{ product.title }}</h3>
             <p class="modal-price">{{ product.price | money }}</p>
+           {% assign desc_key = product.description | append: forloop.index %}
+            <p class="modal-description">{{ desc_key }}</p>
             <!-- Color Variants -->
             {% assign color_options = product.options_with_values | where: "name", "Color" %}
             {% if color_options.size > 0 %}
@@ -298,8 +280,6 @@ label {
                   <button class="color-variant-btn">{{ value }}</button>
                 {% endfor %}
               </div>
-
-              
             {% endif %}
             <!-- Size Variants -->
             {% assign size_options = product.options_with_values | where: "name", "Size" %}
@@ -338,9 +318,18 @@ label {
 
 <script>
 
-  document.querySelectorAll('.size-variant-select').forEach(sel => {
-  sel.addEventListener('change', () => {
-    sel.blur(); // forces blur so CSS rotates caret back down
+  document.addEventListener("DOMContentLoaded", () => {
+  const select = document.querySelector(".size-variant-select");
+  const wrapper = select.closest(".select-container");
+
+  select.addEventListener("click", () => {
+    // toggle open class when clicked
+    wrapper.classList.toggle("open");
+  });
+
+  select.addEventListener("blur", () => {
+    // remove open class when focus is lost
+    wrapper.classList.remove("open");
   });
 });
 
