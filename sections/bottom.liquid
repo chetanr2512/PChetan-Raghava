@@ -460,7 +460,7 @@ document.querySelectorAll('.product-modal').forEach(function(modal) {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
+{% comment %} document.addEventListener('DOMContentLoaded', () => {
   // For each product modal on the page
   document.querySelectorAll('.product-modal').forEach(modal => {
     let selectedColor = null;
@@ -502,7 +502,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
   });
+}); {% endcomment %}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.product-modal').forEach(modal => {
+    let selectedColor = null;
+
+    // Handle color selection
+    modal.querySelectorAll('.color-variant-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        modal.querySelectorAll('.color-variant-btn').forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+        selectedColor = button.textContent.trim();
+      });
+    });
+
+    // Add to Cart button logic
+    modal.querySelector('.add-to-cart-btn').addEventListener('click', async () => {
+      const sizeSelect = modal.querySelector('.size-variant-select');
+      const selectedSize = sizeSelect ? sizeSelect.value : null;
+
+      if (!selectedColor) {
+        alert('Please select a color.');
+        return;
+      }
+      if (!selectedSize) {
+        alert('Please select a size.');
+        return;
+      }
+
+      // Get product variants from Shopify Liquid object via data attribute
+      // We will print variants as JSON in a data attribute you must add to the modal div in your Liquid code:
+      // Example Liquid code addition:
+      // <div class="product-modal" id="product-modal-{{ product.id }}" style="display: none;" data-variants='{{ product.variants | json }}'>
+
+      const variantsData = modal.getAttribute('data-variants');
+      if (!variantsData) {
+        alert('Product variant data not available.');
+        return;
+      }
+
+      const variants = JSON.parse(variantsData);
+
+      // Find variant with matching options
+      const matchedVariant = variants.find(variant => {
+        const colorMatch = variant.option1 === selectedColor || variant.option2 === selectedColor || variant.option3 === selectedColor;
+        const sizeMatch = variant.option1 === selectedSize || variant.option2 === selectedSize || variant.option3 === selectedSize;
+        return colorMatch && sizeMatch;
+      });
+
+      if (!matchedVariant) {
+        alert('Selected variant combination is not available.');
+        return;
+      }
+
+      // Add matched variant to cart via Shopify AJAX API
+      try {
+        const response = await fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: matchedVariant.id, quantity: 1 })
+        });
+
+        if (response.ok) {
+          alert('Added to cart!');
+          // Optionally, update cart UI or redirect to cart page
+        } else {
+          const errorData = await response.json();
+          alert('Error adding to cart: ' + (errorData.description || response.statusText));
+        }
+      } catch (error) {
+        alert('Network error adding to cart.');
+        console.error(error);
+      }
+    });
+  });
 });
+
 
 
 
