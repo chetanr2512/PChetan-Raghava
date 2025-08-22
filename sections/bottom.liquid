@@ -277,6 +277,7 @@ label {
             <!-- Size Variants -->
             {% assign size_options = product.options_with_values | where: "name", "Size" %}
             {% if size_options.size > 0 %}
+              <div class="select-wrapper">
               <label for="size">Size</label>
               <select  class="size-variant-select" id="size">
                 <option style="text-align: center;" value="" disabled selected hidden>Choose your size</option>
@@ -291,6 +292,7 @@ label {
            1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 
            0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708"/>
     </svg>
+    </div>
             {% endif %}
             <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
           </div>
