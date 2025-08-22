@@ -238,7 +238,8 @@
     <div class="gift-tagline">{{ section.settings.tagline }}</div>
     <a  class="gift-button">
       <span>{{ section.settings.gift_button_text }}</span>
-      <span class="gift-arrow">&rarr;</span>
+      {% comment %} <span class="gift-arrow">&rarr;</span> {% endcomment %}
+        <img class="gift-arrow" src="{{ 'icon-arrow.svg' | asset_url }}" alt="Arrow" width="32" height="32" />
     </a>
   </div>
 </div>
