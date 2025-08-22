@@ -189,7 +189,7 @@
         </div>
       </div>
       <!-- Modal (hidden by default) -->
-      <div class="product-modal" id="product-modal-{{ product.id }}" style="display: none;">
+      {% comment %} <div class="product-modal" id="product-modal-{{ product.id }}" style="display: none;">
         <div class="product-modal-content">
           <button class="modal-close" data-product="{{ product.id }}">&times;</button>
           <div class="product-modal-info">
@@ -222,10 +222,50 @@
             <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
+      <div class="product-modal-content">
+  <button class="modal-close" aria-label="Close">&times;</button>
+  <div class="product-modal-image-frame">
+    <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" />
+  </div>
+  <h3 class="product-modal-title">{{ product.title }}</h3>
+  <div class="product-modal-price">{{ product.price | money }}</div>
+  {% assign desc_key = product.description | append: forloop.index %}
+            <p class="modal-description">{{ desc_key }}</p>
+  {% assign color_options = product.options_with_values | where: "name", "Color" %}
+  {% if color_options.size > 0 %}
+    <label class="product-modal-label">Color</label>
+    <div class="product-modal-colors">
+      {% for value in color_options.first.values %}
+        <button 
+          class="color-swatch{% if value == selected_color %} selected{% endif %}" 
+          data-value="{{ value }}">
+          {{ value }}
+        </button>
+      {% endfor %}
+    </div>
+  {% endif %}
+  {% assign size_options = product.options_with_values | where: "name", "Size" %}
+  {% if size_options.size > 0 %}
+    <label class="product-modal-label">Size</label>
+    <div class="product-modal-size">
+      <select>
+        <option>Choose your size</option>
+        {% for value in size_options.first.values %}
+          <option>{{ value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  {% endif %}
+  <button class="add-to-cart-btn">
+    ADD TO CART <span class="arrow">&rarr;</span>
+  </button>
+</div>
     {% endif %}
   {% endfor %}
 </div>
+
+
 
 
 
