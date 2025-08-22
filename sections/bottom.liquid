@@ -552,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Add matched variant to cart via Shopify AJAX API
       try {
-        const response = await fetch('/cart/add.js', {
+        const response = await fetch('/assets/quick-add.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: matchedVariant.id, quantity: 1 })
