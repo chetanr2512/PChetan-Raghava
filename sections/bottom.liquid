@@ -337,7 +337,7 @@ label {
 
 <script>
 
-  {% comment %} document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
   const select = document.querySelector(".size-variant-select");
   const wrapper = select.closest(".select-container");
 
@@ -350,56 +350,7 @@ label {
     // remove open class when focus is lost
     wrapper.classList.remove("open");
   });
-}); {% endcomment %}
-
-
-(function () {
-  function wireSelectCaret(root = document) {
-    root.querySelectorAll('.select-container').forEach(container => {
-      const select = container.querySelector('.size-variant-select');
-      if (!select || select.dataset.caretWired) return;
-      select.dataset.caretWired = '1';
-
-      const open  = () => container.classList.add('open');
-      const close = () => container.classList.remove('open');
-
-      // Open when user begins interaction
-      const openOnPointer = () => open();
-      select.addEventListener('pointerdown', openOnPointer);
-      select.addEventListener('mousedown', openOnPointer);
-      select.addEventListener('touchstart', openOnPointer, { passive: true });
-
-      // Close after the dropdown closes or a choice is made
-      select.addEventListener('change', close);
-      select.addEventListener('blur', close);
-      select.addEventListener('keydown', (e) => {
-        // ESC or Alt+Arrow closes dropdown on many browsers
-        if (e.key === 'Escape' || (e.altKey && (e.key === 'ArrowUp' || e.key === 'ArrowDown'))) {
-          close();
-        }
-      });
-    });
-  }
-
-  // Close if clicking anywhere outside any open select
-  document.addEventListener('click', (evt) => {
-    document.querySelectorAll('.select-container.open').forEach(c => {
-      if (!c.contains(evt.target)) c.classList.remove('open');
-    });
-  });
-
-  // Initial bind
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => wireSelectCaret());
-  } else {
-    wireSelectCaret();
-  }
-
-  // If sections re-render (Shopify OS 2.0), re-bind
-  document.addEventListener('shopify:section:load', (e) => wireSelectCaret(e.target || document));
-})();
-
-
+});
 
 
 // Open modal on plus icon click
