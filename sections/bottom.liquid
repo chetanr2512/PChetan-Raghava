@@ -97,12 +97,54 @@
   font-size: 30px; background: none; border: none; cursor:pointer; color: #222;
 }
 
-.modal-image {
+{% comment %} .modal-image {
   width: 100px; height: 100px; object-fit: cover; border-radius:8px; margin-bottom: 12px; display: block; margin: 0 auto 12px;
+} {% endcomment %}
+.modal-image-frame {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 18px auto;
+  border: 2.5px solid #2175FF;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
 }
-.modal-title { font-size: 21px; font-weight: 600; margin: 6px 0 6px 0; text-align: left;}
+.modal-image {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 5px;
+  display: block;
+}
+
+{% comment %} .modal-title { font-size: 21px; font-weight: 600; margin: 6px 0 6px 0; text-align: left;}
 .modal-price { font-size: 19px; font-weight: 500; margin: 6px 0; text-align: left;}
-.modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;}
+.modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;} {% endcomment %}
+
+.modal-title {
+  font-size: 19px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.modal-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+
+.modal-description {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
 
 /* Color and size variant styling */
 {% comment %} .color-variant-row { display: flex; gap: 12px; margin-bottom:10px;}
@@ -228,7 +270,7 @@
         </div>
       </div>
       <!-- Modal (hidden by default) -->
-      <div class="product-modal" id="product-modal-{{ product.id }}" style="display: none;">
+      {% comment %} <div class="product-modal" id="product-modal-{{ product.id }}" style="display: none;">
         <div class="product-modal-content">
           <button class="modal-close" data-product="{{ product.id }}">&times;</button>
           <div class="product-modal-info">
@@ -261,7 +303,40 @@
             <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
+      <div class="product-modal-content">
+  <button class="modal-close" data-product="{{ product.id }}">&times;</button>
+  <div class="modal-image-frame">
+    <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
+  </div>
+  <h3 class="modal-title">{{ product.title }}</h3>
+  <div class="modal-price">{{ product.price | money }}</div>
+  <p class="modal-description">{{ product.description }}</p>
+
+  {% assign color_options = product.options_with_values | where: "name", "Color" %}
+  {% if color_options.size > 0 %}
+    <label class="modal-option-label">Color</label>
+    <div class="color-variant-row">
+      {% for value in color_options.first.values %}
+        <button class="color-variant-btn{% if forloop.first %} selected{% endif %}">{{ value }}</button>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% assign size_options = product.options_with_values | where: "name", "Size" %}
+  {% if size_options.size > 0 %}
+    <label class="modal-option-label">Size</label>
+    <select class="size-variant-select">
+      <option>Choose your size</option>
+      {% for value in size_options.first.values %}
+        <option>{{ value }}</option>
+      {% endfor %}
+    </select>
+  {% endif %}
+
+  <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
+</div>
+
     {% endif %}
   {% endfor %}
 </div>
