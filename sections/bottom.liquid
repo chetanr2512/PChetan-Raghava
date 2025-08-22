@@ -136,52 +136,39 @@ label {
   letter-spacing: 0.01em;
 }
 
-/* Select Box Styling */
 .size-variant-select {
   width: 100%;
   font-family: 'Jost', Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   border: 1px solid #c5c5c5;
-  background: #fff;
-  padding: 14px 48px 14px 12px;   /* More vertical, more right for icon */
-  appearance: none;
-  outline: none;
+  padding: 14px 48px 14px 12px; 
   color: #161616;
   cursor: pointer;
   box-sizing: border-box;
   transition: border-color 0.1s;
-  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+
+  /* ✅ background with caret */
+  background: #fff url("{{ 'icon-new-caret.svg' | asset_url }}") no-repeat right 16px center;
+  background-size: 20px 20px;
 }
 
 .size-variant-select:focus {
   border-color: #161616;
 }
 
-/* Custom Arrow Styling */
-.size-variant-select {
-  /* Positioning for the dropdown arrow */
-  background-image: url("{{ 'icon-new-caret.svg' | asset_url }}")
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  background-size: 20px 20px;
-  appearance: none;
-   -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-/* Option Styling */
 .size-variant-select option {
   font-size: 16px;
   color: #222;
   padding: 10px;
- text-align: center;
- 
-  
-
+  text-align: center;
 }
 
-/* Optional: Remove browser default arrow for Webkit/Blink */
+/* Hide IE default arrow */
 .size-variant-select::-ms-expand { display: none; }
 
 
