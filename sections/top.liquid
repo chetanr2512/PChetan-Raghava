@@ -157,7 +157,6 @@
   position: absolute;
   top: 15%;
   left: 8%;
-  background: rgba(255,255,255,0.93); /* solid white, slightly transparent */
   padding: 36px 40px 28px 36px;
   border-radius: 8px;
   max-width: 440px;
@@ -390,7 +389,7 @@
   
 </div> {% endcomment %}
 
-<div class="image-banner-container">
+{% comment %} <div class="image-banner-container">
   <div class="image-banner-bar">
     <img class="image-banner-bg" src="{{ 'imagebanner.svg' | asset_url }}" alt="Banner" width="100%" height="auto" />
     <div class="image-banner-content">
@@ -402,7 +401,35 @@
       </a>
     </div>
   </div>
+</div> {% endcomment %}
+<!-- Banner Image on Top (as before) -->
+<div class="image-banner-container">
+  <div class="image-banner-bar">
+    <img 
+      class="image-banner-bg" 
+      src="{{ 'imagebanner.svg' | asset_url }}" 
+      alt="Banner" 
+      width="1200" 
+      height="540" />
+  </div>
 </div>
+
+<!-- New Section below with Flex Columns -->
+<div class="flex-section">
+  <div class="flex-col title-desc-col">
+    <h1 class="section-title">{{ section.settings.title_name }}</h1>
+    <p class="section-description">{{ section.settings.description }}</p>
+  </div>
+  <div class="flex-col image-col">
+    <img 
+      src="{{ 'imagebanner.svg' | asset_url }}" 
+      alt="Other Image" 
+      width="900" 
+      height="600"
+      class="other-image" />
+  </div>
+</div>
+
 
 
 
