@@ -277,11 +277,11 @@
 }
 
 .other-image {
-  width: 100%;
-  max-width:100%;
+  width: 90%;            /* Not 100% so it doesn't overflow */
   height: auto;
-  border-radius: 8px;
-  object-fit: contain;
+  max-width: 950px;      /* Prevents image from being too massive */
+  border-radius: 0;
+  display: block;
   
 }
 .section-title {
