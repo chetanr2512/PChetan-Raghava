@@ -104,6 +104,7 @@
 .modal-title { font-size: 21px; font-weight: 600; margin: 6px 0 6px 0; text-align: left;}
 .modal-price { font-size: 19px; font-weight: 500; margin: 6px 0; text-align: left;}
 .modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;} {% endcomment %}
+
 .modal-container {
   display: flex;
   gap: 20px; /* space between image and text */
@@ -327,15 +328,15 @@ label {
         <div class="product-modal-content">
           <button class="modal-close" data-product="{{ product.id }}">&times;</button>
           <div class="product-modal-info">
-            <div class="model-container">
+            <div class="modal-container">
             <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
-             <div class="modal-text-content">
-                <h3 class="modal-title">{{ product.title }}</h3>
-                <p class="modal-price">{{ product.price | money }}</p>
-                 {% assign desc_key = product.description  %}
+            <div class="modal-text-content">
+            <h3 class="modal-title">{{ product.title }}</h3>
+            <p class="modal-price">{{ product.price | money }}</p>
+           {% assign desc_key = product.description  %}
             <p class="modal-description">{{ desc_key }}</p>
-             </div>
-          </div>
+            </div>
+            </div>
             <!-- Color Variants -->
             {% assign color_options = product.options_with_values | where: "name", "Color" %}
             {% if color_options.size > 0 %}
