@@ -106,7 +106,7 @@
 .modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;}
 
 /* Color and size variant styling */
-.color-variant-row { display: flex; gap: 12px; margin-bottom:10px;}
+{% comment %} .color-variant-row { display: flex; gap: 12px; margin-bottom:10px;}
 .color-variant-btn {
   padding: 8px 20px;
   border: 1px solid #222;
@@ -118,7 +118,45 @@
   font-weight: 500;
   transition: all 0.13s;
 }
-.color-variant-btn:active, .color-variant-btn.active { background: #111; color: #fff; }
+.color-variant-btn:active, .color-variant-btn.active { background: #111; color: #fff; } {% endcomment %}
+
+
+.color-variant-row {
+  display: flex;
+  gap: 0;
+  margin-bottom: 10px;
+}
+
+.color-variant-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px 8px 8px;
+  border: 1px solid #222;
+  background: #fff;
+  color: #222;
+  font-size: 15px;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.13s;
+  min-width: 90px;
+  outline: none;
+}
+
+.color-strip {
+  width: 4px;
+  height: 100%;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  margin-right: 12px;
+}
+
+.color-variant-btn.active,
+.color-variant-btn:active {
+  background: #111;
+  color: #fff;
+}
+
 
 /* Size select */
 {% comment %} .size-variant-select {
@@ -294,11 +332,29 @@ label {
             {% assign color_options = product.options_with_values | where: "name", "Color" %}
             {% if color_options.size > 0 %}
               <label>Color</label>
-              <div class="color-variant-row">
+              {% comment %} <div class="color-variant-row">
                 {% for value in color_options.first.values %}
                   <button class="color-variant-btn">{{ value }}</button>
                 {% endfor %}
-              </div>
+              </div> {% endcomment %}
+
+              <div class="color-variant-row">
+              {% assign color_map = 
+                '{"Blue": "#306fea", "Black": "#222", "Red": "#c00", "Green": "#18a058"}' | parse_json %}
+              {% for value in color_options.first.values %}
+                {% assign strip_color = color_map[value] | default: value | downcase %}
+                <button
+                  class="color-variant-btn"
+                  type="button"
+                  data-color="{{ value | downcase }}"
+                >
+                  <span class="color-strip" style="background: {{ strip_color }};"></span>
+                  <span class="color-label">{{ value }}</span>
+                </button>
+              {% endfor %}
+            </div>
+
+
             {% endif %}
             <!-- Size Variants -->
             {% assign size_options = product.options_with_values | where: "name", "Size" %}
