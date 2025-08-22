@@ -199,10 +199,10 @@ label {
 
 
 /* Rotate when the select is focused (opened on most browsers) */
-.select-container:focus-within .caret,
+{% comment %} .select-container:focus-within .caret,
 .size-variant-select:focus + .caret {
   transform: translateY(-50%) rotate(180deg);
-}
+} {% endcomment %}
 
 /* Option styling (optional) */
 .size-variant-select option {
