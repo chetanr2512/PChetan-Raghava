@@ -134,29 +134,99 @@
 
 /*  image banner */  
 
-.image-banner-container{
+.image-banner-container {
   width: 100%;
-  font-family: 'Jost', sans-serif;
-  margin: 0;
-}
-.image-banner-bar {
-  display: block;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  height: 100%;
-  
-  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
-  border-radius: 8px;
-}
-.gift-header-bar .title-name {
-  font-size: 70px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #000;
-  margin: 0 auto;
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  font-family: 'Jost', sans-serif;
+  overflow: hidden;
+  margin: 0;
+  background: #fff;
+}
+
+.image-banner-bar {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-banner-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-banner-content {
+  position: absolute;
+  top: 18%; /* move down from top edge */
+  left: 6%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 480px;
+  padding: 32px 24px;
+  background: rgba(255,255,255,0.0); /* transparent, can adjust if text is hard to read */
+}
+
+.title-name {
+  font-size: 52px; /* Desktop headline */
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 18px;
+  line-height: 1.1;
+}
+
+.image-banner-desc {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.image-banner-btn {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 32px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  text-decoration: none;
+  display: inline-flex;
   align-items: center;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+
+.image-banner-btn .gift-arrow {
+  font-size: 22px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+/* Banner button hover animation, matches the previous .gift-button */
+.image-banner-btn::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; height: 100%; width: 0;
+  background: #FFEB3B;
+  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+  z-index: -1;
+}
+
+.image-banner-btn:hover::before {
+  width: 100%;
+}
+
+.image-banner-btn:hover {
+  color: #111;
 }
 
 @media (min-width: 768px) {
@@ -257,6 +327,43 @@
   .gift-header-container.menu-open .close-icon {
     display: flex;
   }
+  
+ /* image banner */
+
+  .image-banner-bar {
+    border-radius: 0;
+    min-height: 440px;
+  }
+  .image-banner-bg {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  .image-banner-content {
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center;
+    text-align: center;
+    max-width: 95vw;
+    padding: 16px 6vw;
+    background: rgba(255,255,255,0.0);
+  }
+  .title-name {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .image-banner-desc {
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .image-banner-btn {
+    padding: 12px 20px;
+    font-size: 15px;
+    margin-top: 5px;
+  }
+
 }
 </style>
 
@@ -289,14 +396,32 @@
     </a>
   </div>
 </div>
-<div class="image-banner-container">
+{% comment %} <div class="image-banner-container">
   <div class="image-banner-bar">
 <img src="{{ 'imagebanner.svg' | asset_url }}" style="margin-top:-100px;" alt="Close menu"  width="100%" height="100%" />
 <span class="title-name ">{{ section.settings.title_name }}</span>
   </div>
    
   
+</div> {% endcomment %}
+
+<div class="image-banner-container">
+  <div class="image-banner-bar">
+    <img class="image-banner-bg" src="{{ 'imagebanner.png' | asset_url }}" alt="Banner" width="100%" height="100%" />
+    <div class="image-banner-content">
+      <h1 class="title-name">{{ section.settings.title_name }}</h1>
+      <p class="image-banner-desc">{{ section.settings.description }}</p>
+      <a class="gift-button image-banner-btn">
+        <span>{{ section.settings.gift_button_text }}</span>
+        <span class="gift-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
 </div>
+
+
+
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
