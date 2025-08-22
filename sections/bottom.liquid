@@ -136,58 +136,65 @@ label {
   letter-spacing: 0.01em;
 }
 
+/* Container is the positioning context for the caret */
 .select-container {
-  position: relative;
+  position: relative;          /* <-- critical */
+  display: block;              /* ensure it forms a box */
   width: 100%;
 }
 
+/* Your select (remove any background-image caret here) */
 .size-variant-select {
   width: 100%;
   font-family: 'Jost', Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   border: 1px solid #c5c5c5;
-  padding: 14px 48px 14px 12px;
+  padding: 14px 48px 14px 12px;  /* room for the caret on the right */
   color: #161616;
-  cursor: pointer;
-  box-sizing: border-box;
+  background: #fff;             /* no caret background here */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
-  background: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-color 0.1s;
 }
 
 .size-variant-select:focus {
   border-color: #161616;
 }
 
-/* caret positioning */
+/* The caret itself */
 .caret {
   position: absolute;
-  right: 16px;
-  top: 50%;
+  right: 16px;                  /* stick to the right edge */
+  top: 50%;                     /* vertically centered */
+  transform: translateY(-50%) rotate(0deg);
   width: 16px;
   height: 16px;
-  pointer-events: none;
-  transform: translateY(-50%) rotate(0deg);
-  transition: transform 0.3s ease;
+  pointer-events: none;         /* clicks go to the select */
+  transition: transform 0.2s ease;
+  color: #161616;               /* uses currentColor in the SVG */
 }
 
-/* rotate when select is focused */
+/* Rotate when the select is focused (opened on most browsers) */
+.select-container:focus-within .caret,
 .size-variant-select:focus + .caret {
   transform: translateY(-50%) rotate(180deg);
 }
 
+/* Option styling (optional) */
 .size-variant-select option {
   font-size: 16px;
   color: #222;
-  padding: 10px;
   text-align: center;
 }
 
 /* Hide IE default arrow */
 .size-variant-select::-ms-expand { display: none; }
+
 
 
 /* Add to cart button */
@@ -277,22 +284,24 @@ label {
             <!-- Size Variants -->
             {% assign size_options = product.options_with_values | where: "name", "Size" %}
             {% if size_options.size > 0 %}
-              <div class="select-wrapper">
+              <div class="field">
               <label for="size">Size</label>
-              <select  class="size-variant-select" id="size">
-                <option style="text-align: center;" value="" disabled selected hidden>Choose your size</option>
-                {% for value in size_options.first.values %}
-                  <option>{{ value }}</option>
-                {% endfor %}
-              </select>
-               <!-- caret as SVG -->
-    <svg class="caret" viewBox="0 0 10 6">
-      <path fill="currentColor" fill-rule="evenodd"
-        d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 
-           1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 
-           0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708"/>
-    </svg>
-    </div>
+
+              <div class="select-container">
+                <select class="size-variant-select" id="size" required>
+                  <option value="" disabled selected hidden>Choose your size</option>
+                  {% for value in size_options.first.values %}
+                    <option>{{ value }}</option>
+                  {% endfor %}
+                </select>
+
+                <!-- Inline SVG caret so we can rotate it -->
+                <svg class="caret" viewBox="0 0 10 6" aria-hidden="true">
+                  <path fill="currentColor" fill-rule="evenodd"
+                    d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" />
+                </svg>
+              </div>
+            </div>
             {% endif %}
             <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
           </div>
