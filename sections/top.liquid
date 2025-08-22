@@ -219,10 +219,10 @@
       {% comment %} <span class="line"></span>
       <span class="line"></span>
       <span class="line"></span> {% endcomment %}
-      <img src="{{ 'icon-hamburger.svg' | asset_url }}" alt="Hamburger" width="32" height="32">
+      <img src="{{ 'icon-hamburger.svg' | asset_url }}" alt="Hamburger" width="28" height="28">
     </button>
     <button class="close-icon" id="close-btn" aria-label="Close menu" aria-expanded="true">
-       <img src="{{ 'icon-close.svg' | asset_url }}" alt="Close menu" width="32" height="32" />
+       <img src="{{ 'icon-close.svg' | asset_url }}" alt="Close menu" width="28" height="28" />
     </button>
     <span class="gift-brand">{{ section.settings.brand_name }}</span>
 
@@ -238,8 +238,7 @@
     <div class="gift-tagline">{{ section.settings.tagline }}</div>
     <a  class="gift-button">
       <span>{{ section.settings.gift_button_text }}</span>
-      {% comment %} <span class="gift-arrow">&rarr;</span> {% endcomment %}
-        <img class="gift-arrow" src="{{ 'icon-arrow.svg' | asset_url }}" alt="Arrow" width="32" height="32" />
+      <span class="gift-arrow">&rarr;</span>
     </a>
   </div>
 </div>
