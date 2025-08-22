@@ -167,24 +167,21 @@ label {
 }
 
 /* The caret itself */
+/* Default caret = down */
 .caret {
   position: absolute;
-  right: 16px;                  /* stick to the right edge */
-  top: 50%;                     /* vertically centered */
+  right: 16px;
+  top: 50%;
   transform: translateY(-50%) rotate(0deg);
-  width: 16px;
-  height: 16px;
-  pointer-events: none;         /* clicks go to the select */
   transition: transform 0.2s ease;
-  color: #161616; 
-  border:1px solid;              /* uses currentColor in the SVG */
 }
 
-/* Rotate when the select is focused (opened on most browsers) */
-.select-container:focus-within .caret,
-.size-variant-select:focus + .caret {
+/* Rotate when wrapper has .open */
+.select-container.open .caret {
   transform: translateY(-50%) rotate(180deg);
 }
+
+
 
 /* Option styling (optional) */
 .size-variant-select option {
@@ -318,6 +315,22 @@ label {
 
 
 <script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const select = document.querySelector(".size-variant-select");
+  const wrapper = select.closest(".select-container");
+
+  select.addEventListener("click", () => {
+    // toggle open class when clicked
+    wrapper.classList.toggle("open");
+  });
+
+  select.addEventListener("blur", () => {
+    // remove open class when focus is lost
+    wrapper.classList.remove("open");
+  });
+});
+
 
 // Open modal on plus icon click
 document.querySelectorAll('.plus-icon-link').forEach(function(btn) {
