@@ -355,7 +355,7 @@ label {
             <div class="modal-text-content">
             <h3 class="modal-title">{{ product.title }}</h3>
             <p class="modal-price">{{ product.price | money }}</p>
-            <p class="modal-description">{{ product.description }}</p>
+            <p class="modal-description">{{ product.description | strip_html | newline_to_br }}</p>
             </div>
             </div>
             <!-- Color Variants -->
