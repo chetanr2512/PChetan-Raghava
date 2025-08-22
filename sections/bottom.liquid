@@ -106,8 +106,10 @@
 
 .modal-container {
   display: flex;
-  gap: 8px; /* space between image and text */
-  align-items: flex-start;
+  gap: 1rem; /* space between image and text */
+  align-items: stretch;
+  
+  
 }
 
 .modal-image {
@@ -121,6 +123,15 @@
 .modal-text-content {
   display: flex;
   flex-direction: column;
+}
+.image-div,
+.modal-text-content {
+  flex: 1; /* both take equal width (you can adjust) */
+}
+.image-div img {
+  width: 100%;
+  height: 100%;   /* fill parent height */
+  object-fit: cover; /* adjust how image fits */
 }
 
 .modal-title {
