@@ -133,66 +133,60 @@
     line-height: 1; }
 
 /*  image banner */  
-
 .image-banner-container {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   position: relative;
   font-family: 'Jost', sans-serif;
-  overflow: hidden;
-  margin: 0;
-  background: #fff;
 }
 
 .image-banner-bar {
   width: 100%;
-  max-width: 1200px;
   position: relative;
-  border-radius: 8px;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .image-banner-bg {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
+  object-fit: cover;
 }
 
 .image-banner-content {
   position: absolute;
-  top: 18%; /* move down from top edge */
-  left: 6%;
+  top: 15%;
+  left: 8%;
+  background: rgba(255,255,255,0.93); /* solid white, slightly transparent */
+  padding: 36px 40px 28px 36px;
+  border-radius: 8px;
+  max-width: 440px;
   z-index: 2;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 480px;
-  padding: 32px 24px;
-  background: rgba(255,255,255,0.0); /* transparent, can adjust if text is hard to read */
 }
 
 .title-name {
-  font-size: 52px; /* Desktop headline */
+  font-size: 44px;
   font-weight: 700;
-  color: #111;
-  margin-bottom: 18px;
+  color: #000;
+  margin-bottom: 14px;
   line-height: 1.1;
 }
 
 .image-banner-desc {
-  font-size: 18px;
+  font-size: 17px;
   color: #444;
-  margin-bottom: 32px;
+  margin-bottom: 22px;
   font-weight: 400;
 }
 
 .image-banner-btn {
-  margin-top: 8px;
   font-size: 16px;
   font-weight: 500;
-  padding: 12px 32px;
+  padding: 11px 28px;
   background: #111;
   color: #fff;
   border: none;
@@ -203,15 +197,9 @@
   position: relative;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   cursor: pointer;
+  margin-top: 8px;
 }
 
-.image-banner-btn .gift-arrow {
-  font-size: 22px;
-  margin-left: 8px;
-  font-weight: 700;
-}
-
-/* Banner button hover animation, matches the previous .gift-button */
 .image-banner-btn::before {
   content: '';
   position: absolute;
@@ -228,6 +216,16 @@
 .image-banner-btn:hover {
   color: #111;
 }
+
+/* Arrow styling */
+.image-banner-btn .gift-arrow {
+  font-size: 22px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+
+
 
 @media (min-width: 768px) {
   .gift-header-bar {
@@ -299,15 +297,7 @@
     line-height: 1; }
    
 
-  /* image-banner */
-  .gift-header-bar .title-name {
-  font-size: 70px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #000;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
+  
 }  
 
 
@@ -332,36 +322,31 @@
 
   .image-banner-bar {
     border-radius: 0;
-    min-height: 440px;
-  }
-  .image-banner-bg {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+    min-height: 420px;
   }
   .image-banner-content {
     position: absolute;
-    top: 17%;
+    top: 14%;
     left: 50%;
     transform: translateX(-50%);
+    padding: 20px 5vw 20px 5vw;
+    background: rgba(255,255,255,0.96);
+    max-width: 94vw;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     align-items: center;
     text-align: center;
-    max-width: 95vw;
-    padding: 16px 6vw;
-    background: rgba(255,255,255,0.0);
   }
   .title-name {
-    font-size: 32px;
-    margin-bottom: 12px;
+    font-size: 28px;
+    margin-bottom: 10px;
   }
   .image-banner-desc {
-    font-size: 14px;
-    margin-bottom: 18px;
+    font-size: 13.5px;
+    margin-bottom: 14px;
   }
   .image-banner-btn {
-    padding: 12px 20px;
     font-size: 15px;
-    margin-top: 5px;
+    padding: 10px 18px;
   }
 
 }
