@@ -136,29 +136,47 @@ label {
   letter-spacing: 0.01em;
 }
 
+.select-container {
+  position: relative;
+  width: 100%;
+}
+
 .size-variant-select {
   width: 100%;
   font-family: 'Jost', Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
   border: 1px solid #c5c5c5;
-  padding: 14px 48px 14px 12px; 
+  padding: 14px 48px 14px 12px;
   color: #161616;
   cursor: pointer;
   box-sizing: border-box;
-  transition: border-color 0.1s;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   outline: none;
-
-  /* ✅ background with caret */
-  background: #fff url("{{ 'icon-new-caret.svg' | asset_url }}") no-repeat right 16px center;
-  background-size: 20px 20px;
+  background: #fff;
 }
 
 .size-variant-select:focus {
   border-color: #161616;
+}
+
+/* caret positioning */
+.caret {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+/* rotate when select is focused */
+.size-variant-select:focus + .caret {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .size-variant-select option {
@@ -266,6 +284,13 @@ label {
                   <option>{{ value }}</option>
                 {% endfor %}
               </select>
+               <!-- caret as SVG -->
+    <svg class="caret" viewBox="0 0 10 6">
+      <path fill="currentColor" fill-rule="evenodd"
+        d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 
+           1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 
+           0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708"/>
+    </svg>
             {% endif %}
             <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
           </div>
