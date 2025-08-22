@@ -178,11 +178,27 @@
   cursor: pointer;
   font-weight: 500;
   width:100%;
-  transition: all 0.13s;
+  z-index: 2; /* above the highlight */
+  transition: color 0.3s ease;
 }
 .color-variant-btn:active, .color-variant-btn.active { background: #000; color: #fff; }
 .color-variant-btn.selected{
   background: #000; color: #fff;
+}
+.color-variant-row {
+  position: relative;
+  display: flex;
+}
+
+.color-variant-highlight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;  /* initial no size */
+  background-color: black;
+  border-radius: 4px;
+  transition: left 0.3s ease, width 0.3s ease;
+  z-index: 1; /* behind buttons */
 }
 
 /* Size select */
@@ -366,7 +382,8 @@ label {
             {% assign color_options = product.options_with_values | where: "name", "Color" %}
             {% if color_options.size > 0 %}
               <label style="margin-top:5px">Color</label>
-              <div class="color-variant-row">
+              <div class="color-variant-row" style="position:relative;">
+                 <div class="color-variant-highlight"></div>
                 {% for value in color_options.first.values %}
                   <button class="color-variant-btn" style="border-left: 5px solid {{ value | downcase }};">{{ value }}</button>
                 {% endfor %}
