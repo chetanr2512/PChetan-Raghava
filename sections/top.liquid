@@ -110,6 +110,7 @@
   transition: color 0.3s;
   position: relative;
   overflow: hidden;
+  z-index: 0;
 }
 .gift-menu-content .gift-button::before {
   content: '';
@@ -117,7 +118,7 @@
   left: 0; top: 0; height: 100%; width: 0;
   background: #111;
   transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
-  z-index: -1;
+  z-index: 0;
 }
 .gift-menu-content .gift-button:hover::before {
   width: 100%;
@@ -126,7 +127,10 @@
   color: #fff;
 }
 .gift-arrow { font-size: 22px; margin-left: 8px; }
-
+.gift-header-bar .gift-button > * {
+  position: relative;
+  z-index: 1; /* ABOVE the pseudo background */
+}
 @media (min-width: 768px) {
   .gift-header-bar {
     border-radius: 0;
