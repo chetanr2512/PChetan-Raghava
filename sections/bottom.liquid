@@ -271,7 +271,7 @@ label {
             {% if size_options.size > 0 %}
               <label for="size">Size</label>
               <select  class="size-variant-select" id="size">
-                <option value="" disabled selected hidden>Choose your size</option>
+                <option style="text-align: center;" value="" disabled selected hidden>Choose your size</option>
                 {% for value in size_options.first.values %}
                   <option>{{ value }}</option>
                 {% endfor %}
