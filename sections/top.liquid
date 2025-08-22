@@ -96,7 +96,7 @@
 .gift-menu-content .gift-button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 2px;
   font-size: 16px;
   font-weight: 50;
@@ -396,9 +396,9 @@
     flex: 1;
   }
   .gift-header-bar .gift-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 14px;
     font-weight: 500;
     padding: 10px 32px;
@@ -504,7 +504,7 @@
     <!-- Only for desktop: tagline and button in header bar -->
     <span class="gift-tagline">{{ section.settings.tagline }}</span>
     <a  class="gift-button">
-      <span class="button-text">{{ section.settings.gift_button_text }}</span>
+      <span>{{ section.settings.gift_button_text }}</span>
       <span class="gift-arrow">&rarr;</span>
     </a>
   </div>
@@ -512,7 +512,7 @@
   <div class="gift-menu-content" id="gift-menu-content">
     <div class="gift-tagline">{{ section.settings.tagline }}</div>
     <a  class="gift-button">
-      <span class="button-text">{{ section.settings.gift_button_text }}</span>
+      <span>{{ section.settings.gift_button_text }}</span>
       <span class="gift-arrow">&rarr;</span>
     </a>
   </div>
