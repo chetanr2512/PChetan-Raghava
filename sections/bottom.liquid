@@ -98,12 +98,53 @@
   font-size: 30px; background: none; border: none; cursor:pointer; color: #222;
 }
 
-.modal-image {
+{% comment %} .modal-image {
   width: 100px; height: 100px; object-fit: cover; border-radius:8px; margin-bottom: 12px; display: block; margin: 0 auto 12px;
 }
 .modal-title { font-size: 21px; font-weight: 600; margin: 6px 0 6px 0; text-align: left;}
 .modal-price { font-size: 19px; font-weight: 500; margin: 6px 0; text-align: left;}
-.modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;}
+.modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;} {% endcomment %}
+.modal-container {
+  display: flex;
+  gap: 20px; /* space between image and text */
+  align-items: flex-start;
+}
+
+.modal-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.modal-text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 6px 0;
+  text-align: left;
+}
+
+.modal-price {
+  font-size: 19px;
+  font-weight: 500;
+  margin: 6px 0;
+  text-align: left;
+}
+
+.modal-description {
+  font-size: 15px;
+  color: #444;
+  margin: 9px 0 0 0;
+  text-align: left;
+}
+
 
 /* Color and size variant styling */
 .color-variant-row { display: flex;  margin-bottom:10px;width:100%;}
