@@ -285,10 +285,11 @@
 
 .other-image {
   width: 220%;            /* Not 100% so it doesn't overflow */
-  height: 10%;
+  height: 100%;           /* <<< stretches image to parent */
+  object-fit: cover;
   max-width: none;      /* Prevents image from being too massive */
   border-radius: 0;
-  object-fit: contain;
+  
   
   
 }
