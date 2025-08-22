@@ -133,98 +133,31 @@
     line-height: 1; }
 
 /*  image banner */  
-.image-banner-container {
+
+.image-banner-container{
   width: 100%;
-  position: relative;
   font-family: 'Jost', sans-serif;
+  margin: 0;
 }
-
 .image-banner-bar {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.image-banner-bg {
   display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.image-banner-content {
-  position: absolute;
-  top: 15%;
-  left: 8%;
-  padding: 36px 40px 28px 36px;
-  border-radius: 8px;
-  max-width: 440px;
-  z-index: 2;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.title-name {
-  font-size: 44px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 14px;
-  line-height: 1.1;
-}
-
-.image-banner-desc {
-  font-size: 17px;
-  color: #444;
-  margin-bottom: 22px;
-  font-weight: 400;
-}
-
-.image-banner-btn {
-  font-size: 16px;
-  font-weight: 500;
-  padding: 11px 28px;
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-  text-decoration: none;
-  display: inline-flex;
   align-items: center;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  cursor: pointer;
-  margin-top: 8px;
+  justify-content: center;
+  background: #fff;
+  height: 100%;
+  
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  border-radius: 8px;
 }
-
-.image-banner-btn::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; height: 100%; width: 0;
-  background: #FFEB3B;
-  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
-  z-index: -1;
-}
-
-.image-banner-btn:hover::before {
-  width: 100%;
-}
-
-.image-banner-btn:hover {
-  color: #111;
-}
-
-/* Arrow styling */
-.image-banner-btn .gift-arrow {
-  font-size: 22px;
-  margin-left: 8px;
+.gift-header-bar .title-name {
+  font-size: 70px;
   font-weight: 700;
+  letter-spacing: 1px;
+  color: #000;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }
-
-
-
 
 @media (min-width: 768px) {
   .gift-header-bar {
@@ -296,7 +229,15 @@
     line-height: 1; }
    
 
-  
+  /* image-banner */
+  .gift-header-bar .title-name {
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #000;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 }  
 
 
@@ -316,38 +257,6 @@
   .gift-header-container.menu-open .close-icon {
     display: flex;
   }
-
- /* image banner */
-
-  .image-banner-bar {
-    border-radius: 0;
-    min-height: 420px;
-  }
-  .image-banner-content {
-    position: absolute;
-    top: 14%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 20px 5vw 20px 5vw;
-    background: rgba(255,255,255,0.96);
-    max-width: 94vw;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    align-items: center;
-    text-align: center;
-  }
-  .title-name {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  .image-banner-desc {
-    font-size: 13.5px;
-    margin-bottom: 14px;
-  }
-  .image-banner-btn {
-    font-size: 15px;
-    padding: 10px 18px;
-  }
-
 }
 </style>
 
@@ -380,32 +289,14 @@
     </a>
   </div>
 </div>
-{% comment %} <div class="image-banner-container">
+<div class="image-banner-container">
   <div class="image-banner-bar">
 <img src="{{ 'imagebanner.svg' | asset_url }}" style="margin-top:-100px;" alt="Close menu"  width="100%" height="100%" />
 <span class="title-name ">{{ section.settings.title_name }}</span>
   </div>
    
   
-</div> {% endcomment %}
-
-<div class="image-banner-container">
-  <div class="image-banner-bar">
-    <img class="image-banner-bg" src="{{ 'imagebanner.svg' | asset_url }}" alt="Banner" width="100%" height="auto" />
-    <div class="image-banner-content">
-      <h1 class="title-name">{{ section.settings.title_name }}</h1>
-      <p class="image-banner-desc">{{ section.settings.description }}</p>
-      <a class="gift-button image-banner-btn">
-        <span>{{ section.settings.gift_button_text }}</span>
-        <span class="gift-arrow">&rarr;</span>
-      </a>
-    </div>
-  </div>
 </div>
-
-
-
-
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
