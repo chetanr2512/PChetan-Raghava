@@ -167,13 +167,29 @@ label {
 }
 
 /* The caret itself */
+.caret {
+  position: absolute;
+  right: 16px;                  /* stick to the right edge */
+  top: 50%;                     /* vertically centered */
+  transform: translateY(-50%) rotate(0deg);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;         /* clicks go to the select */
+  transition: transform 0.2s ease;
+  color: #161616;               /* uses currentColor in the SVG */
+}
 /* Default caret = down */
 .caret {
   position: absolute;
   right: 16px;
   top: 50%;
   transform: translateY(-50%) rotate(0deg);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;         /* clicks go to the select */
   transition: transform 0.2s ease;
+  color: #161616; 
+  
 }
 
 /* Rotate when wrapper has .open */
@@ -182,6 +198,11 @@ label {
 }
 
 
+/* Rotate when the select is focused (opened on most browsers) */
+{% comment %} .select-container:focus-within .caret,
+.size-variant-select:focus + .caret {
+  transform: translateY(-50%) rotate(180deg);
+} {% endcomment %}
 
 /* Option styling (optional) */
 .size-variant-select option {
