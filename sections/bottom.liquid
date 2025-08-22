@@ -193,21 +193,11 @@
         <div class="product-modal-content">
           <button class="modal-close" data-product="{{ product.id }}">&times;</button>
           <div class="product-modal-info">
-            <div class="row">
-                <div style="width:30%;">
- <img src="{{ product.featured_image | image_url: 300}}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
-                </div>
-                <div style="width:1%;"></div>
-                <div style="width:69%;">
- <h3 class="modal-title">{{ product.title }}</h3>
+            <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
+            <h3 class="modal-title">{{ product.title }}</h3>
             <p class="modal-price">{{ product.price | money }}</p>
            {% assign desc_key = product.description | append: forloop.index %}
             <p class="modal-description">{{ desc_key }}</p>
-                    </div>
-                
-            </div>
-           
-           
             <!-- Color Variants -->
             {% assign color_options = product.options_with_values | where: "name", "Color" %}
             {% if color_options.size > 0 %}
@@ -236,8 +226,6 @@
     {% endif %}
   {% endfor %}
 </div>
-
-
 
 
 
@@ -312,6 +300,7 @@ document.querySelectorAll('.product-modal').forEach(function(modal) {
       "id": "product_6",
       "label": "Product 6"
     },
+
   ],
   "presets": [
     {
