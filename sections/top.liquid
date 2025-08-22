@@ -558,122 +558,88 @@
     justify-content: center;
     align-items: center;
   }
-  .section-title {
-  font-family: 'Jost', sans-serif;
-  font-size: 30px;
-  font-weight: 500;
-  margin-top: -16px;
-  line-height: 100%;
-  letter-spacing: 0px;
-   display: flex;
-    justify-content: center;
-    align-items: center;
-  color: #111;
-}
-  .section-description {
-  font-family: 'Jost', sans-serif;
-  font-size: 16px;
-  color: #000000;
-  line-height: 1;
-  box-sizing: border-box;
-  display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 140%;
-  letter-spacing: 0px;
-}
-
-.image-banner-mobile{
- width: 100%;
+ .image-banner-mobile {
+  width: 100%;
   font-family: 'Jost', sans-serif;
   margin: 0;
-   display: flex;
-    align-items: center;
-    justify-content: center;
+  padding: 24px 16px;           /* Add some padding */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* Center horizontally */
+  text-align: center;           /* Center text content */
+  gap: 16px;                   /* spacing between elements */
 }
 
+.section-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+  line-height: 1.1;
+  max-width: 90vw;
+}
 
-  .reversed-btn {
-  background: #111;
-  color: #fff;
-  border-radius: 0;
-  border: none;
-  padding: 10px 16px;
+.section-description {
+  font-size: 16px;
+  color: #000;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 90vw;
+}
+
+.gift-button.reversed-btn {
+  width: 90%;
+  max-width: 320px;
+  padding: 12px 0;
   font-size: 16px;
   font-weight: 400;
-  width:40%;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;    /* Center text & arrow horizontally */
   position: relative;
-  text-decoration: none; /* no underline */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
   overflow: hidden;
-  transition: color 0.35s cubic-bezier(0.4,0,0.2,1);
-  z-index: 0;
-  font-family: inherit; /* inherit font */
+  border-radius: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  background: #111;
+  color: #fff;
 }
 
-/* Remove outline on focus, you can customize */
-.reversed-btn:focus {
-  outline: 2px solid #FFF544;
-  outline-offset: 2px;
-}
-
-.reversed-btn::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; height: 100%; width: 0;
-  background: #FFF544; /* yellow background */
-  z-index: -1;
-  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
-  pointer-events: none;
-}
-
-.reversed-btn:hover::before,
-.reversed-btn:focus::before {
-  width: 100%;
-}
-
-.reversed-btn:hover,
-.reversed-btn:focus {
-  color: #111;
-}
-
-.button-text {
+.gift-button.reversed-btn .button-text {
+  flex: 1;
   display: flex;
-  font-size: 16px;
-  flex: 1; /* take remaining space */
-  justify-content: center; /* horizontal center within left area */
-  align-items: center;    /* vertical center */
+  justify-content: center;
+  align-items: center;
 }
 
-.reversed-btn .gift-arrow {
+.gift-button.reversed-btn .gift-arrow {
   font-size: 27px;
-  margin-left: 0px;
   font-weight: 700;
-  margin-top:-4px;
+  margin-left: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 28px;
 }
-.image-banner-footer{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding:0;
-  margin-top:-45px;
+
+.image-banner-bg {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0;
+  margin: 0;
 }
-.image-footer{
+
+.image-footer {
   font-size: 14px;
   color: #000;
   font-weight: 400;
   text-align: center;
-  margin-bottom: 4px;
-  margin-top: -5px;
-  
+  margin-top: 0;
+  max-width: 90vw;
+  line-height: 1.4;
 }
 
 
