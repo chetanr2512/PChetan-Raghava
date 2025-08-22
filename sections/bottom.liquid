@@ -289,7 +289,7 @@ label {
             <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
             <h3 class="modal-title">{{ product.title }}</h3>
             <p class="modal-price">{{ product.price | money }}</p>
-           {% assign desc_key = product.description | append: forloop.index %}
+           {% assign desc_key = product.description  %}
             <p class="modal-description">{{ desc_key }}</p>
             <!-- Color Variants -->
             {% assign color_options = product.options_with_values | where: "name", "Color" %}
