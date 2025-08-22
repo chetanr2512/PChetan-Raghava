@@ -365,7 +365,12 @@ label {
               <label style="margin-top:5px">Color</label>
               <div class="color-variant-row">
                 {% for value in color_options.first.values %}
-                  <button class="color-variant-btn" style="border-left: 5px solid {{ value | downcase }};">{{ value }}</button>
+                  <button class="color-variant-btn" style="
+                    {% if value == 'white' %}
+                      border-left: 1px solid #000;
+                    {% else %}
+                      border-left: 5px solid {{ value }};
+                    {% endif %} >{{ value }}</button>
                 {% endfor %}
               </div>
 
