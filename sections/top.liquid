@@ -132,6 +132,14 @@
 .gift-arrow { font-size: 22px; margin-left: 8px;font-weight: 700;
     line-height: 1; }
 
+/*  image banner */  
+
+.image-banner-container{
+  width: 100%;
+  font-family: 'Jost', sans-serif;
+  margin: 0;
+}
+
 @media (min-width: 768px) {
   .gift-header-bar {
     border-radius: 0;
@@ -248,6 +256,10 @@
       <span class="gift-arrow">&rarr;</span>
     </a>
   </div>
+</div>
+<div class="image_banner-container">
+   <img src="{{ 'imagebanner.png' | asset_url }}" alt="Close menu" width="500" height="500" />
+  
 </div>
 
 <script>
