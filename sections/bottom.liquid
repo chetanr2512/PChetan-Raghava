@@ -1,3 +1,34 @@
+<section class="wild-header-section">
+  <h2 class="wild-section-title">{{ section.settings.wild_section_title }}</h2>
+  <div class="wild-grid">
+    {% assign product_ids = "product_1,product_2,product_3,product_4,product_5,product_6" | split: "," %}
+    {% for product_id in product_ids %}
+      {% assign product_handle = section.settings[product_id] %}
+      {% if product_handle %}
+        {% assign product = all_products[product_handle] %}
+        <div class="wild-grid-item">
+          <div class="wild-image-wrapper">
+            {% if product.featured_image %}
+              <img
+                src="{{ product.featured_image | image_url: width:600 }}"
+                alt="{{ product.title }}"
+                class="wild-grid-image" height="100%" width="100%"
+              />
+            {% endif %}
+            <a href="{{ product.url }}" class="plus-icon-link" target="_blank" rel="noopener">
+              <span class="plus-icon">+</span>
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+
+
+
+
 {% schema %}
 {
   "name": "Tisso vison in the wild",
