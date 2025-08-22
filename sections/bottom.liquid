@@ -338,17 +338,19 @@ label {
 <script>
 
   document.addEventListener("DOMContentLoaded", () => {
-  const select = document.querySelector(".size-variant-select");
-  const wrapper = select.closest(".select-container");
+  document.querySelectorAll(".select-container").forEach(container => {
+    const select = container.querySelector(".size-variant-select");
 
-  select.addEventListener("click", () => {
-    // toggle open class when clicked
-    wrapper.classList.toggle("open");
-  });
+    select.addEventListener("click", () => {
+      container.classList.toggle("open"); // toggle instead of just add/remove
+    });
 
-  select.addEventListener("blur", () => {
-    // remove open class when focus is lost
-    wrapper.classList.remove("open");
+    // optional: close when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!container.contains(e.target)) {
+        container.classList.remove("open");
+      }
+    });
   });
 });
 
