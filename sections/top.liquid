@@ -178,7 +178,8 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     position: relative;
     overflow: hidden;
-    z-index: 0;
+    z-index: 1; /* Changed from 0 to 1 */
+    isolation: isolate; /* Creates new stacking context */
   }
   .gift-header-bar .gift-button::before {
     content: '';
