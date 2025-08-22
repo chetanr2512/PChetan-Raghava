@@ -267,8 +267,8 @@ label {
             {% assign size_options = product.options_with_values | where: "name", "Size" %}
             {% if size_options.size > 0 %}
               <label for="size">Size</label>
-              <select class="size-variant-select" id="size">
-                <option>Choose your size</option>
+              <select placeholder="Choose your size" class="size-variant-select" id="size">
+                
                 {% for value in size_options.first.values %}
                   <option>{{ value }}</option>
                 {% endfor %}
