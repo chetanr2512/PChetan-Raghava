@@ -71,13 +71,82 @@
   color: #333;
   pointer-events: none;
 }
+
+/* Grid and Plus Icon see previous answer */
+
+.product-modal {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(30,30,30,0.14);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+
+.product-modal-content {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 340px;
+  width: 90vw;
+  padding: 24px 18px;
+  box-shadow: 0 8px 38px rgba(0,0,0,0.18);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute; right: 12px; top: 12px;
+  font-size: 30px; background: none; border: none; cursor:pointer; color: #222;
+}
+
+.modal-image {
+  width: 100px; height: 100px; object-fit: cover; border-radius:8px; margin-bottom: 12px; display: block; margin: 0 auto 12px;
+}
+.modal-title { font-size: 21px; font-weight: 600; margin: 6px 0 6px 0; text-align: left;}
+.modal-price { font-size: 19px; font-weight: 500; margin: 6px 0; text-align: left;}
+.modal-description { font-size: 15px; color: #444; margin: 9px 0; text-align:left;}
+
+/* Color and size variant styling */
+.color-variant-row { display: flex; gap: 12px; margin-bottom:10px;}
+.color-variant-btn {
+  padding: 8px 20px;
+  border: 1px solid #222;
+  background: #fff;
+  color: #222;
+  font-size: 15px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.13s;
+}
+.color-variant-btn:active, .color-variant-btn.active { background: #111; color: #fff; }
+
+/* Size select */
+.size-variant-select {
+  width: 100%; font-size: 15px; border: 1px solid #222; margin-bottom: 16px; padding: 7px 8px; border-radius: 2px;
+}
+
+/* Add to cart button */
+.add-to-cart-btn {
+  width: 100%; font-size: 17px;
+  padding: 13px 0;
+  background: #111; color: #fff;
+  border: none; border-radius: 0;
+  margin-top: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.add-to-cart-btn .arrow { font-size: 21px; margin-left: 10px;}
+
+
+
+
 </style>
 
 
 
 
 
-<section class="wild-header-section">
+{% comment %} <section class="wild-header-section">
     
   <h2 class="wild-section-title">{{ section.settings.wild_section_title }}</h2>
   <div class="wild-grid">
@@ -103,10 +172,92 @@
       {% endif %}
     {% endfor %}
   </div>
-</section>
+</section> {% endcomment %}
+
+<div class="wild-grid">
+  {% assign product_ids = "product_1,product_2,product_3,product_4,product_5,product_6" | split: "," %}
+  {% for product_id in product_ids %}
+    {% assign product_handle = section.settings[product_id] %}
+    {% if product_handle %}
+      {% assign product = all_products[product_handle] %}
+      <div class="wild-grid-item">
+        <div class="wild-image-wrapper">
+          <img src="{{ product.featured_image | image_url: width:600 }}" height="100%" width="100%" alt="{{ product.title }}" class="wild-grid-image" />
+          <button class="plus-icon-link" data-product="{{ product.id }}">
+            <span class="plus-icon">+</span>
+          </button>
+        </div>
+      </div>
+      <!-- Modal (hidden by default) -->
+      <div class="product-modal" id="product-modal-{{ product.id }}" style="display: none;">
+        <div class="product-modal-content">
+          <button class="modal-close" data-product="{{ product.id }}">&times;</button>
+          <div class="product-modal-info">
+            <img src="{{ product.featured_image | image_url: width:300 }}" height="100%" width="100%" alt="{{ product.title }}" class="modal-image" />
+            <h3 class="modal-title">{{ product.title }}</h3>
+            <p class="modal-price">{{ product.price | money }}</p>
+           {% assign desc_key = 'product_desc_' | append: forloop.index %}
+            <p class="modal-description">{{ section.settings[desc_key] }}</p>
+            <!-- Color Variants -->
+            {% assign color_options = product.options_with_values | where: "name", "Color" %}
+            {% if color_options.size > 0 %}
+              <label>Color</label>
+              <div class="color-variant-row">
+                {% for value in color_options.first.values %}
+                  <button class="color-variant-btn">{{ value }}</button>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <!-- Size Variants -->
+            {% assign size_options = product.options_with_values | where: "name", "Size" %}
+            {% if size_options.size > 0 %}
+              <label>Size</label>
+              <select class="size-variant-select">
+                <option>Choose your size</option>
+                {% for value in size_options.first.values %}
+                  <option>{{ value }}</option>
+                {% endfor %}
+              </select>
+            {% endif %}
+            <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
 
 
 
+
+
+<script>
+
+// Open modal on plus icon click
+document.querySelectorAll('.plus-icon-link').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    var productId = btn.getAttribute('data-product');
+    document.getElementById('product-modal-' + productId).style.display = 'flex';
+  });
+});
+// Close modal on X click
+document.querySelectorAll('.modal-close').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var productId = btn.getAttribute('data-product');
+    document.getElementById('product-modal-' + productId).style.display = 'none';
+  });
+});
+// Optional: click outside modal to close
+document.querySelectorAll('.product-modal').forEach(function(modal) {
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) { modal.style.display = 'none'; }
+  });
+});
+
+
+
+</script>
 
 
 {% schema %}
@@ -125,9 +276,21 @@
       "label": "Product 1"
     },
     {
+    "type": "text",
+    "id": "product_desc_1",
+    "label": "Product 1 Description",
+    "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief"
+    },
+    {
       "type": "product",
       "id": "product_2",
       "label": "Product 2"
+    },
+    {
+    "type": "text",
+    "id": "product_desc_2",
+    "label": "Product 2 Description",
+    "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief"
     },
     {
       "type": "product",
@@ -135,9 +298,21 @@
       "label": "Product 3"
     },
     {
+    "type": "text",
+    "id": "product_desc_3",
+    "label": "Product 3 Description",
+    "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief"
+    },
+    {
       "type": "product",
       "id": "product_4",
       "label": "Product 4"
+    },
+    {
+    "type": "text",
+    "id": "product_desc_4",
+    "label": "Product 4 Description",
+    "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief"
     },
     {
       "type": "product",
@@ -145,10 +320,22 @@
       "label": "Product 5"
     },
     {
+    "type": "text",
+    "id": "product_desc_5",
+    "label": "Product 5 Description",
+    "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief"
+    },
+    {
       "type": "product",
       "id": "product_6",
       "label": "Product 6"
-    }
+    },
+    {
+    "type": "text",
+    "id": "product_desc_6",
+    "label": "Product 6 Description",
+    "default": "This one-piece swimsuit is crafted from jersey featuring an allover micro Monogram motif in relief"
+    },
   ],
   "presets": [
     {
