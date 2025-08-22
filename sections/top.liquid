@@ -376,7 +376,20 @@
   justify-content: center;
   min-width: 28px;
 }
-
+.image-banner-footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-footer{
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 4px;
+  margin-top: -5px;
+  
+}
 
 
 
@@ -551,7 +564,10 @@
   </div>
   
 </div>
- <span class="gift-tagline">{{ section.settings.footer_image }}</span>
+<div class="image-banner-footer">
+ <span class="image-footer">{{ section.settings.footer_image }}</span>
+</div>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
