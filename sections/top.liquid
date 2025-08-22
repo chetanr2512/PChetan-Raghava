@@ -134,30 +134,266 @@
 
 /*  image banner */  
 
-.image-banner-container{
+
+.image-banner-container {
   width: 100%;
+  position: relative;
   font-family: 'Jost', sans-serif;
-  margin: 0;
 }
+
 .image-banner-bar {
-  display: block;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  height: 100%;
-  
-  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
   border-radius: 8px;
+  
 }
-.gift-header-bar .title-name {
-  font-size: 70px;
+
+.image-banner-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-top:-150px;
+}
+
+.image-banner-content {
+  position: absolute;
+  top: 15%;
+  left: 8%;
+  padding: 36px 40px 28px 36px;
+  border-radius: 8px;
+  max-width: 440px;
+  z-index: 2;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title-name {
+  font-size: 44px;
   font-weight: 700;
-  letter-spacing: 1px;
   color: #000;
-  margin: 0 auto;
+  margin-bottom: 14px;
+  line-height: 1.1;
+}
+
+.image-banner-desc {
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 22px;
+  font-weight: 400;
+}
+
+.image-banner-btn {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 11px 28px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.image-banner-btn::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; height: 100%; width: 0;
+  background: #FFF544;
+  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+  z-index: -1;
+}
+
+.image-banner-btn:hover::before {
+  width: 100%;
+}
+
+.image-banner-btn:hover {
+  color: #111;
+}
+
+/* Arrow styling */
+.image-banner-btn .gift-arrow {
+  font-size: 22px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.flex-section {
+  display: flex;
+  gap: 4px;
+  max-width: 100vw;
+  width: 100vw;   /* prevent capping */
+  margin: 0;          /* no centering */
+  padding: 0;;
+    margin: 40px auto;
+   padding: 0px;
+  align-items: stretch;
+  flex-wrap: nowrap; /* prevent wrapping */
+  box-sizing: border-box;
+}
+
+.flex-col {
+  box-sizing: border-box;
+}
+
+/* Left text column */
+.title-desc-col {
+  flex: 0 0 40%; 
+  min-width: 280px;
+  display: flex;
+  padding-left: 50px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Right image column */
+.image-col {
+  flex: 0 0 60%; 
+  min-width: 320px;
+  max-width:100%; 
+  margin-top:-40px;
+  display: flex;
+  padding: 0px;
+  justify-content: flex-start;
+  align-items: stretch; 
+  overflow: hidden;   /* THIS CLIPS image to the column boundary */
+  
+}
+
+.section-description {
+  font-family: 'Jost', sans-serif;
+  font-size: 20px;
+  color: #000000;
+  line-height: 1;
+  word-wrap: break-word; /* allow breaking long text */
+  overflow-wrap: break-word; /* modern equivalent */
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:-10px;
+    padding-left:8px;
+    padding-right:16px;
+    line-height: 140%;
+  letter-spacing: 0px;
+}
+
+.other-image {
+  width: 250%;            
+  height: 100%;          
+  object-fit: cover;
+  max-width: none;      
+  border-radius: 0;
+  margin:0;
+   justify-content: flex-start;
+  align-items: stretch; 
+  
+  
+  
+}
+.section-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 70px;
+  font-weight: 500;
+  margin-top: -16px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: #111;
+}
+.reversed-btn {
+  background: #111;
+  color: #fff;
+  border-radius: 0;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 400;
+  width:40%;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  position: relative;
+  text-decoration: none; /* no underline */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: color 0.35s cubic-bezier(0.4,0,0.2,1);
+  z-index: 0;
+  font-family: inherit; /* inherit font */
 }
+
+/* Remove outline on focus, you can customize */
+.reversed-btn:focus {
+  outline: 2px solid #FFF544;
+  outline-offset: 2px;
+}
+
+.reversed-btn::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; height: 100%; width: 0;
+  background: #FFF544; /* yellow background */
+  z-index: -1;
+  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+
+.reversed-btn:hover::before,
+.reversed-btn:focus::before {
+  width: 100%;
+}
+
+.reversed-btn:hover,
+.reversed-btn:focus {
+  color: #111;
+}
+
+.button-text {
+  display: flex;
+  font-size: 16px;
+  flex: 1; /* take remaining space */
+  justify-content: center; /* horizontal center within left area */
+  align-items: center;    /* vertical center */
+}
+
+.reversed-btn .gift-arrow {
+  font-size: 27px;
+  margin-left: 0px;
+  font-weight: 700;
+  margin-top:-4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+}
+.image-banner-footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0;
+  margin-top:-45px;
+}
+.image-footer{
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 4px;
+  margin-top: -5px;
+  
+}
+
+
 
 @media (min-width: 768px) {
   .gift-header-bar {
@@ -240,6 +476,26 @@
   align-items: center;
 }  
 
+ .image-col {
+    display: flex !important; /* Show right image on desktop */
+  }
+  .image-banner-container {
+    display: block !important; /* Hide banner container on desktop */
+  }
+
+  .section-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 70px;
+  font-weight: 500;
+  margin-top: -16px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: #111;
+}
+.image-banner-mobile{
+   display: none !important;
+}
+
 
 }
 
@@ -257,6 +513,199 @@
   .gift-header-container.menu-open .close-icon {
     display: flex;
   }
+
+  .image-col {
+    display: none !important;  /* Hide right image flex column */
+  }
+  .image-banner-container {
+    display: none !important; /* Ensure banner container visible */
+  }
+  .flex-section{
+    display: none !important;
+  }
+  .image-banner-footer{
+  display: none !important;
+  }
+
+
+  .image-banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vw;
+    text-align: center;          /* Center text on mobile */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Optional: light overlay for readability */
+    border-radius: 8px;
+  }
+
+  .title-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .image-banner-mobile {
+  width: 100vw;
+  box-sizing: border-box;
+  padding-top: 12px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: #111;
+  margin: 16px auto 30px auto;
+  line-height: 1.1;
+  text-align: center;
+  max-width: 340px;
+}
+
+.section-description {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 10px;
+  /* ensure wrap to 2+ lines on mobile */
+  white-space: normal;
+}
+
+.image-banner-btn-wrapper {
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  overflow: hidden;
+}
+
+.image-banner-bg {
+  width: 170%;
+  max-width: none;
+  height: 170%;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+  margin: 0; 
+  margin-left:12px;
+}
+
+/* Button overlays image and is grouped with description width */
+.reversed-btn {
+  position: absolute;
+  top: 72%; /* controls how low on the image the button sits */
+  left: 48%;
+  width:40%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  max-width: 40vw;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background: #111;
+  color: #fff;
+  border-radius: 0;
+  border: none;
+  
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  font-family: inherit;
+  overflow: hidden;
+  margin: 0;
+} 
+
+
+/* Remove outline on focus, you can customize */
+.reversed-btn:focus {
+  outline: 2px solid #FFF544;
+  outline-offset: 2px;
+}
+
+.reversed-btn::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; height: 100%; width: 0;
+  background: #FFF544; /* yellow background */
+  z-index: -1;
+  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+
+.reversed-btn:hover::before,
+.reversed-btn:focus::before {
+  width: 100%;
+}
+
+.reversed-btn:hover,
+.reversed-btn:focus {
+  color: #111;
+}
+
+.button-text {
+  display: flex;
+  font-size: 16px;
+  flex: 1; /* take remaining space */
+  justify-content: center; /* horizontal center within left area */
+  align-items: center;    /* vertical center */
+}
+
+
+.reversed-btn .gift-arrow {
+  font-size: 27px;
+  margin-left: 2px;
+  margin-right: 3px;  
+  font-weight: 700;
+  margin-top:-4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+}
+
+
+
+
+
+
+.image-footer {
+  font-size: 13px;
+  color: #111;
+  text-align: center;
+  margin-top: 18px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.3;
+  display: block;
+}
+
+ 
+
+
+
+
+
+
+
+
+
 }
 </style>
 
@@ -289,14 +738,95 @@
     </a>
   </div>
 </div>
-<div class="image_banner-container">
+{% comment %} <div class="image-banner-container">
   <div class="image-banner-bar">
-<img src="{{ 'imagebanner.png' | asset_url }}" style="margin-top:-100px;" alt="Close menu"  width="100%" height="100%" />
+<img src="{{ 'imagebanner.svg' | asset_url }}" style="margin-top:-100px;" alt="Close menu"  width="100%" height="100%" />
 <span class="title-name ">{{ section.settings.title_name }}</span>
   </div>
    
   
+</div> {% endcomment %}
+
+
+<div class="image-banner-container">
+  <div class="image-banner-bar">
+    <img 
+      class="image-banner-bg" 
+      src="{{ 'imagebanner.svg' | asset_url }}" 
+      alt="Banner" 
+      width="1200" 
+      height="540" />
+  </div>
 </div>
+
+<!-- New Section below with Flex Columns -->
+<div class="flex-section">
+  <div class="flex-col title-desc-col">
+    <h1 class="section-title">{{ section.settings.title_name }}</h1>
+    <p class="section-description">{{ section.settings.description }}</p>
+    <button class="gift-button reversed-btn" style="margin-top: 16px;">
+    <span class="button-text">{{ section.settings.shop_button_text }}</span>
+    <span class="gift-arrow">&rarr;</span>
+  </button>
+  </div>
+  <div class="flex-col image-col">
+    <img 
+      src="{{ 'imagebanner.svg' | asset_url }}" 
+      alt="Other Image" 
+      width="100%" 
+      height="100%"
+      class="other-image" />
+  </div>
+  
+</div>
+<div class="image-banner-footer">
+ <span class="image-footer">{{ section.settings.footer_image }}</span>
+</div>
+
+
+
+<!-- New Section for mobile -->
+{% comment %} <div classs="image-banner-mobile">
+  <h1 class="section-title">{{ section.settings.title_name }}</h1>
+    <p class="section-description">{{ section.settings.description_mobile }}</p>
+
+    <div class="mobile-button">
+<button class="gift-button reversed-btn" style="margin-top: 16px;">
+    <span class="button-text">{{ section.settings.shop_button_text }}</span>
+    <span class="gift-arrow">&rarr;</span>
+  </button>
+  
+    <img 
+      class="image-banner-bg" 
+      src="{{ 'imagebanner.svg' | asset_url }}" 
+      alt="Banner" 
+      width="1200" 
+      height="540" />
+  </div>
+<span class="image-footer">{{ section.settings.footer_image_mobile }}</span>
+</div> {% endcomment %}
+<div class="image-banner-mobile">
+  <h1 class="section-title">{{ section.settings.title_name }}</h1>
+  <p class="section-description">{{ section.settings.description_mobile }}</p>
+
+  <div class="image-banner-btn-wrapper">
+    <img
+      class="image-banner-bg"
+      src="{{ 'imagebanner.svg' | asset_url }}"
+      alt="Banner"
+      width="1200"
+      height="540"
+    />
+    <button class="gift-button reversed-btn">
+      <span class="button-text">{{ section.settings.shop_button_text }}</span>
+      <span class="gift-arrow">&rarr;</span>
+    </button>
+  </div>
+
+  <span class="image-footer">{{ section.settings.footer_image_mobile }}</span>
+</div>
+
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -347,6 +877,30 @@
       "id": "description",
       "label": "Description",
       "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "shop_button_text",
+      "label": "Shop Button Text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "text",
+      "id": "footer_image",
+      "label": "Image Footer",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    },
+    {
+      "type": "text",
+      "id": "footer_image_mobile",
+      "label": "Image Footer Mobile",
+      "default": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
+    },
+     {
+      "type": "text",
+      "id": "description_mobile",
+      "label": "Description Mobile",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
     },
   ],
   "presets": [
