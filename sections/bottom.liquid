@@ -537,10 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // <div class="product-modal" id="product-modal-{{ product.id }}" style="display: none;" data-variants='{{ product.variants | json }}'>
 
       const variantsData = modal.getAttribute('data-variants');
-      if (!variantsData) {
-        alert('Product variant data not available.');
-        return;
-      }
+      
 
       const variants = JSON.parse(variantsData);
 
@@ -551,10 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return colorMatch && sizeMatch;
       });
 
-      if (!matchedVariant) {
-        alert('Selected variant combination is not available.');
-        return;
-      }
+      
 
       // Add matched variant to cart via Shopify AJAX API
       try {
