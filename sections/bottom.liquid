@@ -1,4 +1,81 @@
+
+<style>
+.wild-header-section {
+  padding: 40px 0;
+}
+
+.wild-section-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  text-align: left;
+  padding-left: 8px;
+}
+
+.wild-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.wild-grid-item {
+  position: relative;
+  overflow: hidden;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.wild-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;   /* perfect 1:1 squares */
+}
+
+.wild-grid-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Plus icon styles */
+.plus-icon-link {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  text-decoration: none;
+  transition: box-shadow 0.15s;
+}
+.plus-icon-link:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.plus-icon {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  pointer-events: none;
+}
+</style>
+
+
+
+
+
 <section class="wild-header-section">
+    
   <h2 class="wild-section-title">{{ section.settings.wild_section_title }}</h2>
   <div class="wild-grid">
     {% assign product_ids = "product_1,product_2,product_3,product_4,product_5,product_6" | split: "," %}
