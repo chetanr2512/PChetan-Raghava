@@ -189,11 +189,21 @@
   }
   .gift-header-bar .gift-button:hover {
     color: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.18);
   }
-  .gift-arrow { font-size: 22px; margin-left: 8px; }
+  .gift-arrow {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top:-5px;
+    margin-right:-5px;
+    display: flex;
+    align-items: center;
+  }
+  {% comment %} .gift-arrow { font-size: 22px; margin-left: 8px; } {% endcomment %}
+   
 }
 
-/* MOBILE VISIBILITY */
 @media (max-width: 767px) {
   .gift-header-bar .gift-tagline,
   .gift-header-bar .gift-button {
