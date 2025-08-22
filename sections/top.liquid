@@ -476,6 +476,13 @@
   align-items: center;
 }  
 
+ .image-col {
+    display: flex !important; /* Show right image on desktop */
+  }
+  .image-banner-container {
+    display: none !important; /* Hide banner container on desktop */
+  }
+
 
 }
 
@@ -492,6 +499,13 @@
   }
   .gift-header-container.menu-open .close-icon {
     display: flex;
+  }
+
+  .image-col {
+    display: none !important;  /* Hide right image flex column */
+  }
+  .image-banner-container {
+    display: block !important; /* Ensure banner container visible */
   }
 }
 </style>
