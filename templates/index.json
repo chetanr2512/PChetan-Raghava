@@ -9,6 +9,21 @@
  */
 {
   "sections": {
+    "top_nfNxhz": {
+      "type": "top",
+      "name": "Top Gift(custom)",
+      "settings": {
+        "brand_name": "TISSO VISON",
+        "tagline": "Find the ideal gift for your loved ones.",
+        "gift_button_text": "CHOOSE GIFT",
+        "title_name": "The Gift Guide",
+        "description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "shop_button_text": "SHOP NOW",
+        "footer_image": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "footer_image_mobile": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR",
+        "description_mobile": "Discover Joy: Your Ultimate Holiday Gift Destination."
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "disabled": true,
@@ -53,6 +68,7 @@
     }
   },
   "order": [
+    "top_nfNxhz",
     "featured_collection",
     "bottom_tEyH8j"
   ]

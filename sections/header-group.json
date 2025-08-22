@@ -33,6 +33,7 @@
     },
     "top_96fXyU": {
       "type": "top",
+      "disabled": true,
       "name": "Top Gift(custom)",
       "settings": {
         "brand_name": "TISSO VISON",
