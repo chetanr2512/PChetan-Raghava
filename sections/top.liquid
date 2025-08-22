@@ -216,9 +216,10 @@
 <div class="gift-header-container" id="gift-header-container">
   <div class="gift-header-bar" id="gift-header-bar">
     <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      {% comment %} <span class="line"></span>
       <span class="line"></span>
-      <span class="line"></span>
-      <span class="line"></span>
+      <span class="line"></span> {% endcomment %}
+      <img src="{{ 'icon-hamburger.svg' | asset_url }}" alt="Hamburger" width="32" height="32">
     </button>
     <button class="close-icon" id="close-btn" aria-label="Close menu" aria-expanded="true">
       <span>&times;</span>
