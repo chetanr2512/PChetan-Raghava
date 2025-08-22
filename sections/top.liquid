@@ -289,6 +289,58 @@
   letter-spacing: 0px;
   color: #111;
 }
+.reversed-btn {
+  background: #111;
+  color: #fff;
+  border-radius: 0;
+  border: none;
+  padding: 11px 28px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  text-decoration: none; /* no underline */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: color 0.35s cubic-bezier(0.4,0,0.2,1);
+  z-index: 0;
+  font-family: inherit; /* inherit font */
+}
+
+/* Remove outline on focus, you can customize */
+.reversed-btn:focus {
+  outline: 2px solid #FFEB3B;
+  outline-offset: 2px;
+}
+
+.reversed-btn::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; height: 100%; width: 0;
+  background: #FFEB3B; /* yellow background */
+  z-index: -1;
+  transition: width 0.35s cubic-bezier(0.4,0,0.2,1);
+  pointer-events: none;
+}
+
+.reversed-btn:hover::before,
+.reversed-btn:focus::before {
+  width: 100%;
+}
+
+.reversed-btn:hover,
+.reversed-btn:focus {
+  color: #111;
+}
+
+.reversed-btn .gift-arrow {
+  font-size: 22px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
 
 
 
@@ -488,6 +540,10 @@
   <div class="flex-col title-desc-col">
     <h1 class="section-title">{{ section.settings.title_name }}</h1>
     <p class="section-description">{{ section.settings.description }}</p>
+    <button class="gift-button reversed-btn" style="margin-top: 16px;">
+    <span>Explore Now</span>
+    <span class="gift-arrow">&rarr;</span>
+  </button>
   </div>
   <div class="flex-col image-col">
     <img 
@@ -553,6 +609,12 @@
       "id": "description",
       "label": "Description",
       "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "shop_button_text",
+      "label": "Shop Button Text",
+      "default": "SHOP NOW"
     },
   ],
   "presets": [
