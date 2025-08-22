@@ -415,11 +415,11 @@ label {
               </div>
             </div>
             {% endif %}
-            <button class="add-to-cart-btn">ADD TO CART <span class="arrow">&rarr;</span></button>
+            
             <form method="post" action="{{ routes.cart_add_url }}">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-            <input min="1" type="number" id="quantity" name="quantity" value="1"/>
-            <input type="submit" value="Add to cart" class="btn" />
+            {% comment %} <input type="submit" value="Add to cart" class="btn" /> {% endcomment %}
+             <button class="add-to-cart-btn" type="submit"  >ADD TO CART <span class="arrow">&rarr;</span></button>
           </form>
           </div>
         </div>
